@@ -57,33 +57,3 @@ export function InputField({
     </InputLabel>
   );
 }
-
-// 드롭다운 선택 필드
-export function SelectField({ id, label, matchList, register, error }) {
-  return (
-    <InputLabel htmlFor={id}>
-      {label}
-      <Select id={id} {...register}>
-        <option value="">
-          경기를 선택해주세요 {/* 기본 선택 옵션 */}
-        </option>
-        {matchList.map((match) => (
-          <option key={match.matchCode} value={match.matchCode}>
-            {match.myClub.clubName}: {match.schedule.date} ({match.schedule.day}) {match.schedule.startTime} ~ {match.schedule.endTime}
-          </option>
-        ))}
-      </Select>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
-    </InputLabel>
-  );
-}
-
-// 체크 박스 입력 필드
-export function CheckboxField({ label, register }) {
-  return (
-    <InputLabel>
-      {label}
-      <Checkbox type="checkbox" {...register} />
-    </InputLabel>
-  );
-}

@@ -1,17 +1,32 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from '@emotion/react';
+import GlobalStyles from './theme/GlobalStyles';
+import theme from './theme/theme';
+import Landing from './pages/Landing';
+// import Footer from './components/layout/Footer';
+import AppContainer from './components/layout/AppContainer/AppContainer';
+import Login from './pages/Login';
+import Result from './pages/Result';
+import Solution from './pages/Solution';
 
-import Login from './Login';
-
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="login" element={<Login />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Router>
+        <AppContainer>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/result" element={<Result />} />
+            <Route path="/solution" element={<Solution />} />
+            <Route path="/solution/:tag" element={<Solution />} /> {/* tag를 URL 파라미터로 전달 */}
+          </Routes>
+        </AppContainer>
+        {/* <Footer /> */}
+      </Router>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
-import { FormContainer, Button } from './components/Basic';
-import { InputField } from './components/FormField';
+import { FormContainer, Button } from '../components/Basic';
+import { InputField } from '../components/FormField';
 
 // 제목 스타일링
 const Title = styled.h1`
