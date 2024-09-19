@@ -19,7 +19,6 @@ const App = () => {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/result" element={<Result />} />
-            <Route path="/solution" element={<Solution />} />
             <Route path="/solution/:tag" element={<Solution />} /> {/* tag를 URL 파라미터로 전달 */}
           </Routes>
         </AppContainer>

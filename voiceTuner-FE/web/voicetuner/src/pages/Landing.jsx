@@ -11,10 +11,6 @@ function Landing() {
     navigate("/result");
   }
 
-  const goSoulutionPage = () => {
-    navigate("/solution")
-  }
-  
   
 
 
@@ -23,7 +19,6 @@ function Landing() {
       <h1>Landing Page</h1>
       <button onClick={goLoginPage}>로그인 페이지로 이동</button>
       <button onClick={goResultPage}>결과 페이지로 이동</button>
-      <button onClick={goSoulutionPage}>솔루션 페이지로 이동</button>
     </div>
   );
 };

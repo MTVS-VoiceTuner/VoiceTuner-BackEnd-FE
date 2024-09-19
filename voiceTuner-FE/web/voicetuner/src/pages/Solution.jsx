@@ -17,7 +17,7 @@ const Solution = () => {
                     part: 'snippet',  // 결과의 정보 세부 내용을 포함한 필드
                     q: query,         // 검색어, 여기서는 "노래연습"과 tag를 조합
                     type: 'video',    // 비디오 유형으로만 검색
-                    maxResults: 10,   // 검색 결과의 최대 개수
+                    maxResults: 5,   // 검색 결과의 최대 개수
                     key: API_KEY,     // YouTube API 키
                 },
             });
@@ -30,7 +30,7 @@ const Solution = () => {
     // 컴포넌트가 마운트되거나 tag 값이 변경될 때마다 유튜브 검색 수행
     useEffect(() => {
         if (tag) {
-            const query = `노래연습 ${tag}`; // "노래연습"과 tag를 결합하여 검색어 생성
+            const query = `노래 연습 ${tag}`; // "노래연습"과 tag를 결합하여 검색어 생성
             searchVideos(query); // 검색어로 유튜브 비디오 검색 함수 호출
         }
     }, [tag]); // tag 값이 변경될 때마다 검색 수행
