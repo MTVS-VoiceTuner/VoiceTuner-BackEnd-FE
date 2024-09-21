@@ -65,7 +65,6 @@ function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate(); // useNavigate를 호출하여 navigate 변수 정의
 
-
   const onSubmit = async (data) => {
 
     setIsLoading(true);
