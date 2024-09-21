@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
+
 function Landing() {
   const navigate = useNavigate();
 
@@ -10,9 +11,6 @@ function Landing() {
   const goResultPage = () => {
     navigate("/result");
   }
-
-  
-
 
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>

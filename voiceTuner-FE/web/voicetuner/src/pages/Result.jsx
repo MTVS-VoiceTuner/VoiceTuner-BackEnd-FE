@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Accordion, Card, Button } from 'react-bootstrap';
+import { Accordion } from 'react-bootstrap';
 import { getResultList } from '../apis/resultAPI';
 import { useNavigate } from 'react-router-dom'; // useNavigate 사용
 import 'bootstrap/dist/css/bootstrap.min.css';
