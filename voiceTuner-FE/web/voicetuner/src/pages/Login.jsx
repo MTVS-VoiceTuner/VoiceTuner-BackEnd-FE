@@ -4,6 +4,10 @@ import { useForm } from 'react-hook-form';
 import { FormContainer, Button } from '../components/Basic';
 import { InputField } from '../components/FormField';
 import { useNavigate } from 'react-router-dom'; // useNavigate 추가
+import Cookies from 'universal-cookie'; // 쿠키 관련 import 
+
+// 쿠키 사용을 선언
+const cookies = new Cookies();
 
 // 제목 스타일링
 const Title = styled.h1`
@@ -53,7 +57,10 @@ const UserLogin = async (email, password) => {
     // 로그인 성공 시 받은 accessToken을 localStorage에 저장
     // localStorage : 브라우저의 저장소, 데이터를 키-값 쌍으로 영구적으로 저장할 수 있는 공간이다. 새로고침 해도 존재한다.
     // setItem(키, 값) : localStorage의 객체로 새로운 키-값 쌍을 저장하는 메서드
-    localStorage.setItem('accessToken', data.response.accessToken); 
+
+    // accessToken과 refreshToken 저장
+    // localStorage.setItem('accessToken', data.response.accessToken); 
+    setaccessTokenToCookie(data.response.accessToken); // 쿠키에 refreshToken 저장
 
     // 토큰이 저장됐는지 확인
     const storedToken = localStorage.getItem('accessToken');
@@ -66,6 +73,21 @@ const UserLogin = async (email, password) => {
     throw error;
   }
 };
+
+// 쿠키에 refreshToken을 저장하는 함수
+export function setaccessTokenToCookie(accessToken) {
+  cookies.set('accessToken', accessToken, {
+    sameSite: 'strict',
+    path: '/', 
+  });
+}
+
+// 로그아웃 함수
+export function logout() {
+  console.log('localStorage set logout!');
+  window.localStorage.setItem('logout', Date.now());
+  cookies.remove('refreshToken'); // 쿠키에서 refreshToken 삭제
+}
 
 function LoginForm() {
   

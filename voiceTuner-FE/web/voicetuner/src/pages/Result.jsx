@@ -1,38 +1,64 @@
 import { useState, useEffect } from 'react';
 import { Accordion } from 'react-bootstrap';
-import { getResultList } from '../apis/resultAPI';
-import { useNavigate } from 'react-router-dom'; // useNavigate 사용
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie'; // 쿠키 사용
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+const cookies = new Cookies();
 
 const Result = () => {
   const [resultList, setResultList] = useState([]);
-  const navigate = useNavigate(); // useNavigate 사용
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const results = getResultList();
-    setResultList(results);
+    const fetchResults = async () => {
+      const token = cookies.get('accessToken'); // 쿠키에서 토큰 가져오기
+      console.log("accessoken : " + token)
+
+      if (!token) {
+        console.error('토큰이 존재하지 않습니다.');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:8080/solution/find-song', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`, // 헤더에 토큰 추가
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('결과를 가져오는데 실패했습니다.');
+        }
+
+        const data = await response.json();
+        setResultList(data); // 가져온 데이터를 상태에 저장
+
+      } catch (error) {
+        console.error('데이터를 가져오는 중 오류 발생:', error);
+      }
+    };
+
+    fetchResults();
   }, []);
 
-  // 버튼 클릭 시 해당 tag를 Solution 컴포넌트로 전달
   const onClickHandler = (tag) => {
-    navigate(`/solution/${tag}`); // 해당 tag를 URL에 포함하여 페이지 이동
+    navigate(`/solution/${tag}`);
   };
 
-  
-
-  // 아코디언 라이브러리 설치 후 사용 
   return (
     <>
       <h2>누구누구의 결과창</h2>
 
-      <Accordion defaultActiveKey="0"> {/*첫번째 아코디언이 열려있는지 결정 0 : true, 1 : false */}
-        {/* resultList 배열의 요소를 순회하면서 렌더링한다.*/}
+      <Accordion defaultActiveKey="0">
         {resultList.map((item, index) => (
-          <Accordion.Item key={item.id} eventKey={`${index}`}> {/*각 아이템에 고유한 key값을 부여-id*/}
-            <Accordion.Header>{item.title}</Accordion.Header>  {/*아코디언 제목(result title)*/}
-            <Accordion.Body>{/*아코디언 내용*/}
-              {item.body} {/*결과 내용 - 이미지화 또는 텍스트 */}
-              <button onClick={() => onClickHandler(item.tag)}>solution</button> {/* 솔루션 이동 버튼 */}
+          <Accordion.Item key={item.id} eventKey={`${index}`}>
+            <Accordion.Header>{item.title}</Accordion.Header>
+            <Accordion.Body>
+              {item.body}
+              <button onClick={() => onClickHandler(item.tag)}>solution</button>
             </Accordion.Body>
           </Accordion.Item>
         ))}
