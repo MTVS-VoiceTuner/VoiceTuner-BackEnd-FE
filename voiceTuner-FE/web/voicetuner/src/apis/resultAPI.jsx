@@ -1,7 +1,8 @@
 import results from '../data/result.json';
 
-export function getResultList() {
 
+export function getResultList() {
+    
     return results;
 }
 
@@ -12,6 +13,6 @@ export function getResult(id) {
 }
 
 // id의 태그 검색
-export function searchTag(serchTag) {
-    return results.filter(result => result.resultId.match(serchTag));
+export function searchTag(searchTag) {
+    return results.filter(result => result.resultId.match(searchTag));
 }
