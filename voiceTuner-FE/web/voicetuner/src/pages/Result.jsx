@@ -3,6 +3,7 @@ import { Accordion } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie'; // 쿠키 사용
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import request from '../components/instance';
 
 const cookies = new Cookies();
 
@@ -21,6 +22,10 @@ const Result = () => {
       }
 
       try {
+
+        // refreshToken만을 secure httpOnly 쿠키에 저장해 CSRF 공격을 방어한다.
+        // accessToken은 웹 어플리케이션 내 로컬 변수에 저장해 사용하며, API를 요청할 때 Authorization 헤더에 넣어 보내준다.
+
         const response = await fetch('http://localhost:8080/solution/result', {
           method: 'GET',
           headers: {
