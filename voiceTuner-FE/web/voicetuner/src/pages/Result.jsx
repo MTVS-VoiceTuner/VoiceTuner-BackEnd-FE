@@ -13,7 +13,7 @@ const Result = () => {
 
   useEffect(() => {
     const fetchResults = async () => {
-      const token = cookies.get('refreshToken'); // 쿠키에서 accessToken 가져오기
+      const token = cookies.get('accessToken'); // 쿠키에서 accessToken 가져오기
       console.log("ResultToken : " + token);
 
       if (!token) {

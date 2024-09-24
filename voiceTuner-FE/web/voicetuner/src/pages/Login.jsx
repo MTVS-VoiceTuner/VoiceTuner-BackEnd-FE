@@ -78,24 +78,14 @@ const UserLogin = async (email, password) => {
     }
 
 
-    setTokenToCookie(data.response.accessToken, data.response.refreshToken); // 쿠키에 token 저장 // 메서드 호출
-    // setTokenToCookie(data.response.token, data.response.userId); // 쿠키에 token 저장
+    //setTokenToCookie(data.response.accessToken, data.response.refreshToken); // 쿠키에 token 저장 // 메서드 호출
 
     // 쿠키에서 토큰을 가져와 로그로 출력
-    const storedAccessToken = cookies.get('accessToken');
-    console.log('login_access_token : ', storedAccessToken);
-
-    const storedRefreshToken = cookies.get('refreshToken');
-    console.log('login_refresh_token : ', storedRefreshToken);
-
-    // 토큰이 저장됐는지 확인
-    // accessToken
     // const storedAccessToken = cookies.get('accessToken');
     // console.log('login_access_token : ', storedAccessToken);
-    // // refreshToken
+
     // const storedRefreshToken = cookies.get('refreshToken');
     // console.log('login_refresh_token : ', storedRefreshToken);
-
 
     return data; // 로그인 성공 시 사용자 정보 또는 토큰을 반환
 
