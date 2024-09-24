@@ -54,17 +54,19 @@ const UserLogin = async (email, password) => {
       throw new Error(data.message || '로그인에 실패했습니다.');
     }
 
-    // 로그인 성공 시 받은 accessToken을 localStorage에 저장
+    // 로그인 성공 시 받은 token localStorage에 저장
     // localStorage : 브라우저의 저장소, 데이터를 키-값 쌍으로 영구적으로 저장할 수 있는 공간이다. 새로고침 해도 존재한다.
     // setItem(키, 값) : localStorage의 객체로 새로운 키-값 쌍을 저장하는 메서드
 
-    // accessToken과 refreshToken 저장
-    // localStorage.setItem('accessToken', data.response.accessToken); 
-    setaccessTokenToCookie(data.response.accessToken); // 쿠키에 refreshToken 저장
+    // token 저장
+    // localStorage.setItem('token', data.response.token); 
+    
+    setTokenToCookie(data.response.accessToken); // 쿠키에 token 저장
+    // setTokenToCookie(data.response.token, data.response.userId); // 쿠키에 token 저장
 
     // 토큰이 저장됐는지 확인
     const storedToken = localStorage.getItem('accessToken');
-    console.log('accessToken : ', storedToken);
+    console.log('loginToken : ', storedToken);
 
     return data; // 로그인 성공 시 사용자 정보 또는 토큰을 반환
 
@@ -74,19 +76,28 @@ const UserLogin = async (email, password) => {
   }
 };
 
-// 쿠키에 refreshToken을 저장하는 함수
-export function setaccessTokenToCookie(accessToken) {
+// accessToken, refreshToken을 쿠키에 저장 
+export function setTokenToCookie(accessToken, refreshToken) {
+  // 쿠키에 Access Token 저장
   cookies.set('accessToken', accessToken, {
+    sameSite: 'strict',
+    path: '/', 
+  });
+
+  // Refresh Token도 필요시 저장
+  cookies.set('refreshToken', refreshToken, {
     sameSite: 'strict',
     path: '/', 
   });
 }
 
+
+
 // 로그아웃 함수
 export function logout() {
   console.log('localStorage set logout!');
   window.localStorage.setItem('logout', Date.now());
-  cookies.remove('refreshToken'); // 쿠키에서 refreshToken 삭제
+  cookies.remove('token'); // 쿠키에서 token 삭제
 }
 
 function LoginForm() {

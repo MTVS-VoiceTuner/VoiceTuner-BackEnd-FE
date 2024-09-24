@@ -12,8 +12,8 @@ const Result = () => {
 
   useEffect(() => {
     const fetchResults = async () => {
-      const token = cookies.get('accessToken'); // 쿠키에서 토큰 가져오기
-      console.log("accessoken : " + token)
+      const token = cookies.get('refreshToken'); // 쿠키에서 accessToken 가져오기
+      console.log("ResultToken : " + token);
 
       if (!token) {
         console.error('토큰이 존재하지 않습니다.');
@@ -21,7 +21,7 @@ const Result = () => {
       }
 
       try {
-        const response = await fetch('http://localhost:8080/solution/find-song', {
+        const response = await fetch('http://localhost:8080/solution/result', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`, // 헤더에 토큰 추가
@@ -44,13 +44,14 @@ const Result = () => {
     fetchResults();
   }, []);
 
+  // solution 페이지를 tag를 기준으로 이동
   const onClickHandler = (tag) => {
     navigate(`/solution/${tag}`);
   };
 
   return (
     <>
-      <h2>누구누구의 결과창</h2>
+      <h2>환영합니다</h2>
 
       <Accordion defaultActiveKey="0">
         {resultList.map((item, index) => (
