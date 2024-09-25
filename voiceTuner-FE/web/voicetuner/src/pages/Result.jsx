@@ -11,6 +11,13 @@ const Result = () => {
   const [resultList, setResultList] = useState([]);
   const navigate = useNavigate();
 
+  // const storedAccessToken = cookies.get('accessToken');
+  //   console.log('result_access_token : ', storedAccessToken);
+
+  //   const storedRefreshToken = cookies.get('refreshToken');
+  //   console.log('result_refresh_token : ', storedRefreshToken);
+
+
   useEffect(() => {
     const fetchResults = async () => {
       const token = cookies.get('accessToken'); // 쿠키에서 accessToken 가져오기

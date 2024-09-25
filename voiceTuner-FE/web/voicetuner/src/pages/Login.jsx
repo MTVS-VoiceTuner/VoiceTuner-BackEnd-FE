@@ -1,15 +1,10 @@
 import { useState } from 'react';
-import ReactDOM from "react-dom";
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 import { FormContainer, Button } from '../components/Basic';
 import { InputField } from '../components/FormField';
 import { useNavigate } from 'react-router-dom'; // useNavigate 추가
 import Cookies from 'universal-cookie'; // 쿠키 관련 import 
-import axios from "axios";
-
-axios.defaults.baseURL = "https://www.abc.com";
-axios.defaults.withCredentials = true;
 
 // 쿠키 사용을 선언
 const cookies = new Cookies();
@@ -78,19 +73,21 @@ const UserLogin = async (email, password) => {
     }
 
 
-    //setTokenToCookie(data.response.accessToken, data.response.refreshToken); // 쿠키에 token 저장 // 메서드 호출
+    setTokenToCookie(data.response.accessToken, data.response.refreshToken); // 쿠키에 token 저장 // 메서드 호출
 
     // 쿠키에서 토큰을 가져와 로그로 출력
-    // const storedAccessToken = cookies.get('accessToken');
-    // console.log('login_access_token : ', storedAccessToken);
+    const storedAccessToken = cookies.get('accessToken');
+    console.log('login_access_token : ', storedAccessToken);
 
-    // const storedRefreshToken = cookies.get('refreshToken');
-    // console.log('login_refresh_token : ', storedRefreshToken);
+    const storedRefreshToken = cookies.get('refreshToken');
+    console.log('login_refresh_token : ', storedRefreshToken);
 
     return data; // 로그인 성공 시 사용자 정보 또는 토큰을 반환
 
   } catch (error) {
+    
     console.error('로그인 오류:', error.message);
+    
     throw error;
   }
 };
