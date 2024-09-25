@@ -2,8 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import GlobalStyles from './theme/GlobalStyles';
 import theme from './theme/theme';
-import Landing from './pages/Landing';
-// import Footer from './components/layout/Footer';
 import AppContainer from './components/layout/AppContainer/AppContainer';
 import Login from './pages/Login';
 import Result from './pages/Result';

@@ -2,7 +2,7 @@
 import styled from '@emotion/styled';
 
 const AppContainer = styled.div`
-  width: 90vw;
+  /* width: 90vw;
   max-width: 400px;
   height: 100vh;
   padding: 5vh 1vw;
@@ -26,7 +26,7 @@ const AppContainer = styled.div`
   @media (max-width: 480px) {
     width: 100vw;
     padding: 7vh 1vw;
-  }
+  } */
 `;
 
 export default AppContainer;

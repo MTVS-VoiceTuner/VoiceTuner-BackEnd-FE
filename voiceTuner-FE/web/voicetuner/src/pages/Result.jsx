@@ -3,25 +3,48 @@ import { Accordion } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie'; // 쿠키 사용
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import request from '../components/instance';
+import styled from '@emotion/styled';
+
+
 
 const cookies = new Cookies();
+
+// 스타일 추가
+const FullSizeContainer = styled.div`
+  width: 100vw;   /* 화면의 전체 너비 */
+  height: 100vh;  /* 화면의 전체 높이 */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const AccordionWrapper = styled.div`
+  width: 100%;    /* 부모 컨테이너에 맞게 전체 너비를 차지 */
+  height: 100%;   /* 부모 컨테이너에 맞게 전체 높이를 차지 */
+  max-width: 800px; /* 선택적으로 최대 너비를 설정 */
+`;
+
+const TextWrapper = styled.div`
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap; /* 웹에서도 텍스트 자동 개행 */
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center; /* 버튼을 가운데 정렬 */
+  margin-top: 10px; /* 버튼 위에 여백 추가 */
+`;
 
 const Result = () => {
   const [resultList, setResultList] = useState([]);
   const navigate = useNavigate();
 
-  // const storedAccessToken = cookies.get('accessToken');
-  //   console.log('result_access_token : ', storedAccessToken);
-
-  //   const storedRefreshToken = cookies.get('refreshToken');
-  //   console.log('result_refresh_token : ', storedRefreshToken);
-
-
   useEffect(() => {
     const fetchResults = async () => {
-      const token = cookies.get('accessToken'); // 쿠키에서 accessToken 가져오기
-      console.log("ResultToken : " + token);
+      const token = cookies.get('accessToken');
 
       if (!token) {
         console.error('토큰이 존재하지 않습니다.');
@@ -29,14 +52,10 @@ const Result = () => {
       }
 
       try {
-
-        // refreshToken만을 secure httpOnly 쿠키에 저장해 CSRF 공격을 방어한다.
-        // accessToken은 웹 어플리케이션 내 로컬 변수에 저장해 사용하며, API를 요청할 때 Authorization 헤더에 넣어 보내준다.
-
         const response = await fetch('http://localhost:8080/solution/result', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`, // 헤더에 토큰 추가
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
         });
@@ -46,8 +65,9 @@ const Result = () => {
         }
 
         const data = await response.json();
-        setResultList(data); // 가져온 데이터를 상태에 저장
+        setResultList(data);
 
+        console.log(data);
       } catch (error) {
         console.error('데이터를 가져오는 중 오류 발생:', error);
       }
@@ -56,27 +76,38 @@ const Result = () => {
     fetchResults();
   }, []);
 
-  // solution 페이지를 tag를 기준으로 이동
-  const onClickHandler = (tag) => {
-    navigate(`/solution/${tag}`);
+  const onClickHandler = (ai_short_answer) => {
+    navigate(`/solution/${ai_short_answer}`);
   };
 
   return (
-    <>
-      <h2>환영합니다</h2>
+    <FullSizeContainer>
+      <h2>VoiceTuner</h2>
 
-      <Accordion defaultActiveKey="0">
-        {resultList.map((item, index) => (
-          <Accordion.Item key={item.id} eventKey={`${index}`}>
-            <Accordion.Header>{item.title}</Accordion.Header>
-            <Accordion.Body>
-              {item.body}
-              <button onClick={() => onClickHandler(item.tag)}>solution</button>
-            </Accordion.Body>
-          </Accordion.Item>
-        ))}
-      </Accordion>
-    </>
+      <AccordionWrapper>
+        <Accordion defaultActiveKey="0">
+          {resultList.map((key, index) => (
+            <Accordion.Item key={key.solutionId} eventKey={`${index}`}>
+              <Accordion.Header>{key.ai_short_answer}</Accordion.Header>
+              <Accordion.Body>
+                <TextWrapper>
+                  <h5>Solution:</h5>
+                  <p>{key.ai_answer}</p>
+                </TextWrapper>
+                <ButtonWrapper>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => onClickHandler(key.ai_short_answer)}
+                  >
+                    solution 보기
+                  </button>
+                </ButtonWrapper>
+              </Accordion.Body>
+            </Accordion.Item>
+          ))}
+        </Accordion>
+      </AccordionWrapper>
+    </FullSizeContainer>
   );
 };
 
