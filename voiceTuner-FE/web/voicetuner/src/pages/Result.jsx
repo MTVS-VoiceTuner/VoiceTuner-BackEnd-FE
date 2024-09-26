@@ -52,7 +52,7 @@ const Result = () => {
       }
 
       try {
-        const response = await fetch('http://125.312.216.190:8080/solution/result', {
+        const response = await fetch('http://125.132.216.190:5670/solution/result', {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -67,7 +67,6 @@ const Result = () => {
         const data = await response.json();
         setResultList(data);
 
-        console.log(data);
       } catch (error) {
         console.error('데이터를 가져오는 중 오류 발생:', error);
       }
@@ -85,26 +84,27 @@ const Result = () => {
       <h2>VoiceTuner</h2>
 
       <AccordionWrapper>
-        <Accordion defaultActiveKey="0">
-          {resultList.map((key, index) => (
-            <Accordion.Item key={key.solutionId} eventKey={`${index}`}>
-              <Accordion.Header>{key.ai_short_answer}</Accordion.Header>
-              <Accordion.Body>
-                <TextWrapper>
-                  <h5>Solution:</h5>
-                  <p>{key.ai_answer}</p>
-                </TextWrapper>
-                <ButtonWrapper>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => onClickHandler(key.ai_short_answer)}
-                  >
-                    solution 보기
-                  </button>
-                </ButtonWrapper>
-              </Accordion.Body>
-            </Accordion.Item>
-          ))}
+        <Accordion>
+        {resultList.map((item, index) => (
+  <Accordion.Item key={item.solutionId || index} eventKey={`${index}`}>
+    <Accordion.Header>{item.ai_short_answer}</Accordion.Header>
+    <Accordion.Body>
+      <TextWrapper>
+        <h5>Solution:</h5>
+        <p>{item.ai_answer}</p>
+      </TextWrapper>
+      <ButtonWrapper>
+        <button
+          className="btn btn-primary"
+          onClick={() => onClickHandler(item.ai_short_answer)}
+        >
+          solution 보기
+        </button>
+      </ButtonWrapper>
+    </Accordion.Body>
+  </Accordion.Item>
+))}
+
         </Accordion>
       </AccordionWrapper>
     </FullSizeContainer>
