@@ -52,7 +52,7 @@ const Result = () => {
       }
 
       try {
-        const response = await fetch('http://localhost:8080/solution/result', {
+        const response = await fetch('http://125.312.216.190:8080/solution/result', {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,

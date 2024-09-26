@@ -55,7 +55,7 @@ const UserLogin = async (email, password) => {
   try {
 
     // 서버에 로그인 요청 // fetch : fetch는 브라우저에서 제공하는 API로, HTTP 요청을 서버에 보낼 수 있다. // URL, 전송방식(GET, POST), header(Content-Type), body(전달할 내용)
-    const response = await fetch('http://localhost:8080/api/auth/login', {
+    const response = await fetch('http://125.312.216.190:8080/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
