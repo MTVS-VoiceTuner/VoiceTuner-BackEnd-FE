@@ -32,17 +32,15 @@ VoiceTuner 웹페이지는 PC와 모바일에서 간단하고 직관적인 인�
 
 ## 🌐 4. 웹 페이지
 ### 🎛️ 4-1. 유저 피드백 조회 페이지
-
+**AI가 분석한 피드백 데이터를 확인할 수 있는 페이지입니다.**
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/5291b412-0e40-4264-adc7-d4715ba3b175" alt="피드백 페이지" width="400"/>
-  <p style="text-align: center; margin-top: 10px;">AI가 분석한 맞춤형 피드백 데이터를 확인할 수 있는 페이지입니다.</p>
+  <img src="https://github.com/user-attachments/assets/3275e704-6040-45f7-a6f7-74d8c4b01dcf" alt="추천 영상 페이지" width="800"/>
 </div>
 
 ---
 
 ### 🎥 4-2. 맞춤형 연습 영상 추천 페이지
-
+**YouTube Data API를 활용해 추천된 연습 영상 목록을 확인할 수 있는 페이지입니다.**
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/3275e704-6040-45f7-a6f7-74d8c4b01dcf" alt="추천 영상 페이지" width="400"/>
-  <p style="text-align: center; margin-top: 10px;">YouTube Data API를 활용해 추천된 연습 영상 목록을 확인할 수 있는 페이지입니다.</p>
+  <img src="https://github.com/user-attachments/assets/5291b412-0e40-4264-adc7-d4715ba3b175" alt="피드백 페이지" width="250"/>
 </div>
