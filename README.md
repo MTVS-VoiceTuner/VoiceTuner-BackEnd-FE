@@ -10,7 +10,19 @@ VoiceTuner 웹페이지는 PC와 모바일에서 간단하고 직관적인 인�
 
 ---
 
-## 🛠️ 2. 기술 스택
+## 👥 2. Front-End 팀원 소개
+<div align="center">
+
+|                                              정현민                                                |
+|:--------------------------------------------------------------------------------------------------:|
+|<img src = "https://avatars.githubusercontent.com/u/148692050?v=4" width = "100" height = "100"> |
+|                             [@JungHyeonmin](https://github.com/JungHyeonmin)                             |
+
+</div>
+
+---
+
+## 🛠️ 3. 기술 스택
 <div align="center">
   <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
@@ -20,7 +32,7 @@ VoiceTuner 웹페이지는 PC와 모바일에서 간단하고 직관적인 인�
 
 ---
 
-## 🎯 3. 주요 기능
+## 🎯 4. 주요 기능
 1. **사용자 피드백 조회**  
    백엔드 API를 활용하여 AI 서버가 제공한 맞춤형 피드백 데이터를 실시간으로 확인 가능.([백엔드 프로젝트 보기](https://github.com/MTVS-VoiceTuner/VoiceTuner-BackEnd-BE))
    
@@ -30,8 +42,8 @@ VoiceTuner 웹페이지는 PC와 모바일에서 간단하고 직관적인 인�
 3. **반응형 디자인**  
    모바일과 데스크톱 모두에서 최적의 사용자 경험을 제공.
 
-## 🌐 4. 웹 페이지
-### 🎛️ 4-1. 유저 피드백 조회 페이지
+## 🌐 5. 웹 페이지
+### 🎛️ 5-1. 유저 피드백 조회 페이지
 **AI가 분석한 피드백 데이터를 확인할 수 있는 페이지입니다.**
 <div align="center">
   <img src="https://github.com/user-attachments/assets/3275e704-6040-45f7-a6f7-74d8c4b01dcf" alt="추천 영상 페이지" width="800"/>
@@ -39,7 +51,7 @@ VoiceTuner 웹페이지는 PC와 모바일에서 간단하고 직관적인 인�
 
 ---
 
-### 🎥 4-2. 맞춤형 연습 영상 추천 페이지
+### 🎥 5-2. 맞춤형 연습 영상 추천 페이지
 **YouTube Data API를 활용해 추천된 연습 영상 목록을 확인할 수 있는 페이지입니다.**
 <div align="center">
   <img src="https://github.com/user-attachments/assets/5291b412-0e40-4264-adc7-d4715ba3b175" alt="피드백 페이지" width="250"/>
