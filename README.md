@@ -22,7 +22,7 @@ VoiceTuner 웹페이지는 PC와 모바일에서 간단하고 직관적인 인�
 
 ## 🎯 3. 주요 기능
 1. **사용자 피드백 조회**  
-   백엔드 API를 활용하여 AI 서버가 제공한 맞춤형 피드백 데이터를 실시간으로 확인 가능.
+   백엔드 API를 활용하여 AI 서버가 제공한 맞춤형 피드백 데이터를 실시간으로 확인 가능.([백엔드 프로젝트 보기](https://github.com/MTVS-VoiceTuner/VoiceTuner-BackEnd-BE))
    
 2. **맞춤형 연습 영상 추천**  
    YouTube Data API를 사용하여 사용자의 피드백에 적합한 연습 영상을 추천.
